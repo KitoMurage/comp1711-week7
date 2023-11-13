@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main(){
+      FILE *input = fopen(data.txt, "r");
+        if (!input)
+        {
+            printf("Error: File could not be opened\n");
+            return NULL;
+        }
+
+    float highest = 0;
+    float current;
+
+    while (fscanf(input,"%f", &current) == 1){
+        if (current > highestvalue){
+            current = currentvalue; }
+            printf("Highest: %f",highest)}
+
+    retrun 0;
+}
+
