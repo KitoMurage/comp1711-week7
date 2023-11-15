@@ -46,6 +46,8 @@ int main()
         // as otherwise this will stay in the stdin and be read next time
         while (getchar() != '\n');
 
+        double min_bloodIron = 999999;
+        double max_bloodIron = -129934947;
 
         // switch statement to control the menu.
         switch (choice)
@@ -86,11 +88,35 @@ int main()
 
         case 'C':
         case 'c':
+            counter = 0;
+            
+            while (fgets(line, buffer_size, input))
+            {
+                tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                if (daily_readings[counter].bloodIron < min_bloodIron) {
+            min_bloodIron = daily_readings[counter].bloodIron;
+        }
+                counter++;
+            }
+            printf("Your lowest blood iron value was %.2f\n", min_bloodIron);
+            fclose(input);
             return 0;
             break;
 
         case 'D':
         case 'd':
+            counter = 0;
+            
+            while (fgets(line, buffer_size, input))
+            {
+                tokeniseRecord(line, ",", daily_readings[counter].date, &daily_readings[counter].bloodIron);
+                if (daily_readings[counter].bloodIron > max_bloodIron) {
+            max_bloodIron = daily_readings[counter].bloodIron;
+        }
+                counter++;
+            }
+            printf("Your highest blood iron value was %.2f\n", max_bloodIron);
+            fclose(input);
             return 0;
             break;
 
@@ -120,4 +146,4 @@ int main()
             break;
         }
     }
-}
+    }
